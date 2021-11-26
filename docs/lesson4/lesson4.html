@@ -1,0 +1,280 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js ayu">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Lesson 4 - CS 6340: Software Analysis</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "ayu";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('ayu')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item affix "><a href="../introduction.html">Introduction</a></li><li class="chapter-item "><a href="../lesson1/lesson1.html"><strong aria-hidden="true">1.</strong> Lesson 1</a></li><li class="chapter-item "><a href="../lesson2/lesson2.html"><strong aria-hidden="true">2.</strong> Lesson 2</a></li><li class="chapter-item "><a href="../lesson3/lesson3.html"><strong aria-hidden="true">3.</strong> Lesson 3</a></li><li class="chapter-item expanded "><a href="../lesson4/lesson4.html" class="active"><strong aria-hidden="true">4.</strong> Lesson 4</a></li><li class="chapter-item "><a href="../lesson5/lesson5.html"><strong aria-hidden="true">5.</strong> Lesson 5</a></li><li class="chapter-item "><a href="../lesson6/lesson6.html"><strong aria-hidden="true">6.</strong> Lesson 6</a></li><li class="chapter-item "><a href="../lesson7/lesson7.html"><strong aria-hidden="true">7.</strong> Lesson 7</a></li><li class="chapter-item "><a href="../lesson8/lesson8.html"><strong aria-hidden="true">8.</strong> Lesson 8</a></li><li class="chapter-item "><a href="../lesson9/lesson9.html"><strong aria-hidden="true">9.</strong> Lesson 9</a></li><li class="chapter-item "><a href="../lesson10/lesson10.html"><strong aria-hidden="true">10.</strong> Lesson 10</a></li><li class="chapter-item "><a href="../lesson11/lesson11.html"><strong aria-hidden="true">11.</strong> Lesson 11</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu (default)</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">CS 6340: Software Analysis</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="automated-test-generation"><a class="header" href="#automated-test-generation">Automated Test Generation</a></h1>
+<h2 id="outline"><a class="header" href="#outline">Outline</a></h2>
+<p>In previous chapters were covered random testing, or fuzzing. In this lesson,
+we'll cover automated test generation that takes a more directed approach. Some
+methodologies and examples are:</p>
+<ul>
+<li>Systematic testing - <code>Korat</code> is a tool that conducts systematic testing
+<ul>
+<li>This test suite targets programs with linked data structures</li>
+</ul>
+</li>
+<li>Feedback-directed random testing - <code>Randoop</code> is a tool that conducts this type
+of testing.
+<ul>
+<li>This test suite targets Java Classes and Libraries.</li>
+</ul>
+</li>
+</ul>
+<h2 id="insights"><a class="header" href="#insights">Insights</a></h2>
+<p>Procedures have an infinite number of possible test inputs, however, only a
+finite number of test inputs are worth testing against the program. An insight
+is that, for test generation, we often find that systematically testing all
+inputs up to a small size can uncover a majority of the bugs.</p>
+<h3 id="small-test-case-hypothesis"><a class="header" href="#small-test-case-hypothesis">Small test case hypothesis</a></h3>
+<p>The <strong>small test case hypothesis</strong> is, if there is any test that causes the
+program to fail, this is such a small test. If a list function works for lists
+of length <code>0</code> through <code>3</code>, it probably works for all lists - the function is
+oblivious to the length.</p>
+<h2 id="korat-test-generation"><a class="header" href="#korat-test-generation">Korat test generation</a></h2>
+<p>Remember, <code>Korat</code> targets applications / libraries with linked data structures.
+What <code>Korat</code> does is enumerate the types of each member of each data structure,
+determining what values each Class and Node can contain. <code>Korat</code> then generates
+test structures for all possible shapes of a given data structure.</p>
+<h2 id="korats-algorithm"><a class="header" href="#korats-algorithm">Korat's algorithm</a></h2>
+<p>The basic algorithm that <code>Korat</code> uses to test programs is as follows:</p>
+<ul>
+<li>User selects maximum input size <code>k</code></li>
+<li>Generate all possible inputs up to size <code>k</code></li>
+<li>Discard inputs where the <code>pre-condition</code> for the function is <code>false</code></li>
+<li>Run program on remaining inputs</li>
+<li>Check results using the function's <code>post-condition</code></li>
+</ul>
+<h2 id="the-general-case-for-binary-trees"><a class="header" href="#the-general-case-for-binary-trees">The general case for binary trees</a></h2>
+<p>To calculate the number of possible binary trees for <code>k</code> nodes, the formula is:</p>
+<p><code>(k + 1)^(2k + 1)</code></p>
+<h3 id="an-overestimate"><a class="header" href="#an-overestimate">An overestimate</a></h3>
+<p>The formula above is an overestimation of the number of possible binary trees.
+Some of the tree shapes provided in the above equation are not even tree-shaped,
+and many of them are isomorphic - exactly the same shape as other possible
+combinations. In reality, there are only 9 distinct binary trees with at most
+3 nodes.</p>
+<h2 id="determining-the-precondition"><a class="header" href="#determining-the-precondition">Determining the precondition</a></h2>
+<p><code>Korat</code> uses a specific technique to cull test inputs by instrumenting the
+pre-condition of the function under test. <code>Korat</code> adds code to the function's
+actions, observing the fields accessed by the function. This allows them with
+the ability to enumerate the precondition - if a field isn't accessed by a
+precondition the precondition does not depend on the field.</p>
+<h2 id="enumerating-tests"><a class="header" href="#enumerating-tests">Enumerating tests</a></h2>
+<p><code>Korat</code> enumerates shapes by their associated vectors:</p>
+<ul>
+<li>In the initial test candidate, all fields are null</li>
+<li>The next shape is generated by:
+<ul>
+<li>Expanding the last field accessed by the pre-condition</li>
+<li>Backtracking if all possibilities for a field are exhausted</li>
+</ul>
+</li>
+</ul>
+<p>The key idea in this methodology is that <code>Korat</code> never expands parts of the test
+input if it's not examined by the function's pre-condition. <code>Korat</code> also checks
+for and discards shapes that are isomorphic to previously generated shapes.</p>
+<h2 id="strengths-and-weaknesses-of-korat"><a class="header" href="#strengths-and-weaknesses-of-korat">Strengths and weaknesses of Korat</a></h2>
+<p><code>Korat</code> is strong when we can enumerate all possibilities, for example a small
+test case for four nodes, two edges per node. <code>Korat</code> is good for:</p>
+<ul>
+<li>Linked data structures</li>
+<li>Small, easily specified procedures</li>
+<li>Unit testing</li>
+</ul>
+<p><code>Korat</code> is weaker for:</p>
+<ul>
+<li>Integers, Floating-point numbers, strings</li>
+</ul>
+<p><code>Korat</code> is also as weak as the pre-condition for a function under test. If the
+pre-condition is not specific and thorough enough, <code>Korat</code> will generate
+less-than-useful test conditions.</p>
+<h2 id="overview-of-randoop"><a class="header" href="#overview-of-randoop">Overview of Randoop</a></h2>
+<p>The problem with uniform random testing is that it creates too many illegal or
+redundant tests. <code>Randoop</code> aims to randomly create new tests guided by feedback
+from previously generated tests. <code>Randoop</code>'s recipe is as follows:</p>
+<ul>
+<li>Build new sequences incrementally, extending past sequences</li>
+<li>As soon as a sequence is created, execute it</li>
+<li>Use execution results to guide test generation towards sequences that create
+new object states</li>
+</ul>
+<h3 id="sequence-types"><a class="header" href="#sequence-types">Sequence types</a></h3>
+<ul>
+<li>Illegal sequence - sequences that crash before the contract is checked, e.g.
+throw an exception</li>
+<li>Redundant sequence - <code>Randoop</code> maintains a set of all objects created in
+execution of each sequence. A sequence is redundant if an object created during
+its execution belongs to an object in the maintained set.</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../lesson3/lesson3.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="../lesson5/lesson5.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../lesson3/lesson3.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="../lesson5/lesson5.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+    </body>
+</html>

@@ -1,0 +1,293 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js ayu">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Lesson 8 - CS 6340: Software Analysis</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "ayu";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('ayu')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item affix "><a href="../introduction.html">Introduction</a></li><li class="chapter-item "><a href="../lesson1/lesson1.html"><strong aria-hidden="true">1.</strong> Lesson 1</a></li><li class="chapter-item "><a href="../lesson2/lesson2.html"><strong aria-hidden="true">2.</strong> Lesson 2</a></li><li class="chapter-item "><a href="../lesson3/lesson3.html"><strong aria-hidden="true">3.</strong> Lesson 3</a></li><li class="chapter-item "><a href="../lesson4/lesson4.html"><strong aria-hidden="true">4.</strong> Lesson 4</a></li><li class="chapter-item "><a href="../lesson5/lesson5.html"><strong aria-hidden="true">5.</strong> Lesson 5</a></li><li class="chapter-item "><a href="../lesson6/lesson6.html"><strong aria-hidden="true">6.</strong> Lesson 6</a></li><li class="chapter-item "><a href="../lesson7/lesson7.html"><strong aria-hidden="true">7.</strong> Lesson 7</a></li><li class="chapter-item expanded "><a href="../lesson8/lesson8.html" class="active"><strong aria-hidden="true">8.</strong> Lesson 8</a></li><li class="chapter-item "><a href="../lesson9/lesson9.html"><strong aria-hidden="true">9.</strong> Lesson 9</a></li><li class="chapter-item "><a href="../lesson10/lesson10.html"><strong aria-hidden="true">10.</strong> Lesson 10</a></li><li class="chapter-item "><a href="../lesson11/lesson11.html"><strong aria-hidden="true">11.</strong> Lesson 11</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu (default)</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">CS 6340: Software Analysis</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="type-systems"><a class="header" href="#type-systems">Type Systems</a></h1>
+<p>Type systems are usually specified as part of the programming language and are
+usually built into compilers or interpreters fro the language. The main purpose
+of type systems is to reduce the possibility of software bugs by checking for
+logic errors.</p>
+<p>A common type of error detected using type systems analysis is applying
+operations to operands, e.g. adding an integer to a string in a Java program.
+Type systems catch these error using a collection of rules, assigning types to
+different parts of the program, i.e.:</p>
+<ul>
+<li>Variables</li>
+<li>Expressions</li>
+<li>Functions</li>
+</ul>
+<h2 id="what-is-a-type"><a class="header" href="#what-is-a-type">What is a type?</a></h2>
+<p>A <strong>type</strong> is a <strong>set of values</strong>. For example, in Java:</p>
+<ul>
+<li><code>int</code> is the set of all integers between <code>-2^31</code> and <code>(2^31)-1</code></li>
+<li><code>double</code> is the set of all double-precision floating point numbers</li>
+<li><code>boolean</code> is the set {<code>true</code>, <code>false</code>}</li>
+</ul>
+<p>Some more examples related to object-oriented types and functions are as
+follows:</p>
+<ul>
+<li><code>Foo</code> is the set of all objects of class <code>Foo</code></li>
+<li><code>List&lt;Integer&gt;</code> is the set of all <code>Lists</code> of <code>Integer</code> objects
+<ul>
+<li><code>List</code> is a <strong>type constructor</strong></li>
+<li><code>List</code> acts as a function from types to types</li>
+</ul>
+</li>
+<li><code>int -&gt; int</code> is the set of functions taking an <code>int</code> as a parameter and
+returning another <code>int</code></li>
+</ul>
+<h2 id="abstraction"><a class="header" href="#abstraction">Abstraction</a></h2>
+<p>All static analyses use <strong>abstraction</strong>, representing sets of concrete values
+as abstract values.</p>
+<h3 id="why"><a class="header" href="#why">Why?</a></h3>
+<p>Without abstraction, we can't directly reason about infinite sets of concrete
+values - this would not guarantee <strong>termination</strong>. <strong>Abstraction</strong> improves
+performance even in the case of large, finite sets. In type systems,
+abstractions are called <strong>types</strong>.</p>
+<h2 id="notation-for-inference-rules"><a class="header" href="#notation-for-inference-rules">Notation for inference rules</a></h2>
+<p>Inference rules have the following form:</p>
+<ul>
+<li>If <strong>hypothesis</strong> is true, then <strong>conclusion</strong> is true.</li>
+</ul>
+<p>Type checking computes via reasoning:</p>
+<ul>
+<li>If <strong>e1</strong> is an <strong>int</strong> and <strong>e2</strong> is a <strong>double</strong>, then <strong>e1 * e2</strong> is a
+<strong>double</strong></li>
+</ul>
+<p>The above statement in translated from English to a type analysis
+<strong>inference rule</strong> is as follows:</p>
+<ul>
+<li><code>(e1 : int ^ e2 : double) =&gt; e1 * e2 : int</code></li>
+</ul>
+<h2 id="soundness"><a class="header" href="#soundness">Soundness</a></h2>
+<p><strong>Soundness</strong> is extremely useful, program type checks lead to no errors at
+runtime and <strong>verifies</strong> the absence of a class of errors relating to bad
+typing. A <strong>sound</strong> type systems analysis provides a strong guarantee, verifying
+the property of soundness holds across all executions:
+<em>&quot;Well-typed programs cannot go wrong.&quot;</em></p>
+<p><strong>Soundness</strong> comes at a price and can lead to <strong>false positives</strong>.</p>
+<h2 id="global-analysis"><a class="header" href="#global-analysis">Global analysis</a></h2>
+<p>Also called <strong>top-down analysis</strong>, <strong>global analysis</strong> requires the entire
+program to be inspected, constructing a <strong>model</strong> of the environment, required
+to analyze sub-expressions.</p>
+<h2 id="local-analysis"><a class="header" href="#local-analysis">Local analysis</a></h2>
+<p>Also called <strong>bottom-up analysis</strong>, <strong>local analysis</strong> infers multiple
+environments from each expression analyzed, combining its inferences at the end
+of the analysis.</p>
+<h2 id="global-vs-local-analysis"><a class="header" href="#global-vs-local-analysis">Global vs local analysis</a></h2>
+<p>The following is a comparison of global vs local analysis:</p>
+<ul>
+<li><strong>Global analysis</strong>:
+<ul>
+<li>Usually technically simpler than local analysis</li>
+<li>May need extra work to model environments for unfinished programs</li>
+</ul>
+</li>
+<li><strong>Local analysis</strong>:
+<ul>
+<li>More flexible in application</li>
+<li><strong>Technically harder</strong>: Need to allow unknown parameters, more side
+conditions</li>
+</ul>
+</li>
+</ul>
+<h2 id="flow-insensitivity"><a class="header" href="#flow-insensitivity">Flow insensitivity</a></h2>
+<p><strong>Type systems</strong> are generally flow-insensitive meaning their analysis is
+independent of the ordering of sub-expressions - analysis results are
+unaffected by permuting statements.</p>
+<p>This attribute of <strong>type systems analysis</strong> is helpful for the following
+reasons:</p>
+<ul>
+<li>No need for modeling a separate state for each sub-expression</li>
+<li>Flow insensitive analyses are often very efficient and scalable</li>
+</ul>
+<p>This is nice but, due to these attributes, type systems analysis can also be
+<strong>imprecise</strong>.</p>
+<h2 id="flow-sensitivity"><a class="header" href="#flow-sensitivity">Flow sensitivity</a></h2>
+<p><strong>Dataflow analysis</strong> in contrast is an example of flow-sensitive analysis. As
+rules produce new environments, the analysis of a sub-expression cannot take
+place until its environment is available. The analysis results in this case are
+dependent on the <strong>order of statements</strong>.</p>
+<h2 id="path-sensitivity"><a class="header" href="#path-sensitivity">Path sensitivity</a></h2>
+<p>For <strong>path sensitive</strong> analysis using a <strong>type systems analysis</strong>, part of the
+environment now contains a <strong>predicate</strong> declaring under what conditions an
+expression is executed. Each sub-expression has different predicates defined
+at different decision points.</p>
+<p>At points where control paths merge, different paths will still be denoted
+in the output results / final environment.</p>
+<p><strong>Symbolic execution</strong> is an example of a path-sensitive analysis.
+Path-sensitive analyses can be expensive, as there are an exponential number of
+paths to track. This program analyses are often implemented with backtracking,
+i.e. the exploration of one path until it ends and then starting another.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../lesson7/lesson7.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="../lesson9/lesson9.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../lesson7/lesson7.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="../lesson9/lesson9.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+    </body>
+</html>

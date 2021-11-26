@@ -1,0 +1,1372 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js ayu">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>CS 6340: Software Analysis</title>
+        <meta name="robots" content="noindex" />
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "ayu";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('ayu')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item "><a href="lesson1/lesson1.html"><strong aria-hidden="true">1.</strong> Lesson 1</a></li><li class="chapter-item "><a href="lesson2/lesson2.html"><strong aria-hidden="true">2.</strong> Lesson 2</a></li><li class="chapter-item "><a href="lesson3/lesson3.html"><strong aria-hidden="true">3.</strong> Lesson 3</a></li><li class="chapter-item "><a href="lesson4/lesson4.html"><strong aria-hidden="true">4.</strong> Lesson 4</a></li><li class="chapter-item "><a href="lesson5/lesson5.html"><strong aria-hidden="true">5.</strong> Lesson 5</a></li><li class="chapter-item "><a href="lesson6/lesson6.html"><strong aria-hidden="true">6.</strong> Lesson 6</a></li><li class="chapter-item "><a href="lesson7/lesson7.html"><strong aria-hidden="true">7.</strong> Lesson 7</a></li><li class="chapter-item "><a href="lesson8/lesson8.html"><strong aria-hidden="true">8.</strong> Lesson 8</a></li><li class="chapter-item "><a href="lesson9/lesson9.html"><strong aria-hidden="true">9.</strong> Lesson 9</a></li><li class="chapter-item "><a href="lesson10/lesson10.html"><strong aria-hidden="true">10.</strong> Lesson 10</a></li><li class="chapter-item "><a href="lesson11/lesson11.html"><strong aria-hidden="true">11.</strong> Lesson 11</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu (default)</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">CS 6340: Software Analysis</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="introduction"><a class="header" href="#introduction">Introduction</a></h1>
+<p>This notebook contains my notes for CS 6340: Software Analysis, provided by the
+Georgia Institute of Technology. All projects, homework, and quiz materials are
+kept private to abide by the Georgia Institute of Technology
+<a href="https://policylibrary.gatech.edu/student-affairs/academic-honor-code">Academic Honor Code</a>.</p>
+<p>If you have any questions about this notebook, my contact information can be
+found on <a href="https://one2bla.me">my website</a>.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="introduction-to-software-analysis"><a class="header" href="#introduction-to-software-analysis">Introduction to Software Analysis</a></h1>
+<h2 id="what-is-program-analysis"><a class="header" href="#what-is-program-analysis">What is program analysis?</a></h2>
+<p><strong>Program Analysis</strong> is a body of work to automatically discover useful facts
+about programs and can be classified into three kinds of analysis:</p>
+<ul>
+<li>Dynamic (run-time)</li>
+<li>Static (compile-time)</li>
+<li>Hybrid (combination of dynamic and static)</li>
+</ul>
+<h3 id="dynamic-analysis"><a class="header" href="#dynamic-analysis">Dynamic analysis</a></h3>
+<p><strong>Dynamic program analysis</strong> infers facts about a program by monitoring its
+runs (executions). Some of examples of well known dynamic analysis tools are as
+follows:</p>
+<ul>
+<li>Array bounds checking - Purify</li>
+<li>Data race detection - Eraser</li>
+<li>Memory leak detection - Valgrind</li>
+<li>Finding likely invariants - Daikon
+<ul>
+<li>An <strong>invariant</strong> is a program fact that is true for every run of the program</li>
+</ul>
+</li>
+</ul>
+<h3 id="static-analysis"><a class="header" href="#static-analysis">Static analysis</a></h3>
+<p><strong>Static program analysis</strong> infers facts about of a program by inspecting its
+code. This can be done on both source code and compiled binaries. Some of
+examples of well known static analysis tools are as follows:</p>
+<ul>
+<li>Suspicious error patters - Lint, FindBugs, Coverity</li>
+<li>Memory leak detection - Facebook Infer</li>
+<li>Checking API usage rules - Microsoft SLAM</li>
+<li>Verifying invariants - ESC / Java</li>
+</ul>
+<h2 id="discovering-invariants-using-dynamic-analysis"><a class="header" href="#discovering-invariants-using-dynamic-analysis">Discovering invariants using dynamic analysis</a></h2>
+<p>Dynamic analysis is useful for detecting likely invariants, but has difficulty
+following programs that has loops or recursion - this can lead to arbitrarily
+many paths. Dynamic analysis tools like Daikon, while being unable to execute
+all arbitrary paths of a binary dynamically, can rule out entire classes of
+invariants by observing a run of a program.</p>
+<h2 id="discovering-invariants-using-static-analysis"><a class="header" href="#discovering-invariants-using-static-analysis">Discovering invariants using static analysis</a></h2>
+<p>Static analysis and inspection of the source code of a program enables us with
+the ability to <em>definitively</em> identify invariants.</p>
+<h2 id="terminology"><a class="header" href="#terminology">Terminology</a></h2>
+<ul>
+<li>Control flow graph - a graphical representation of each statement within a
+program, with nodes being instructions and edges being possible execution paths
+between instructions.</li>
+<li>Abstract state - an abstract state represents variables with a symbolic value</li>
+<li>Concrete state - a concrete state assigns values to variables</li>
+<li>Termination - the resolution of all paths within a program</li>
+<li>Completeness - a program analysis that accepts correct programs and rejects
+incorrect programs. An <em>incomplete</em> program analysis rejects correct programs</li>
+<li>Soundness - a sound analysis accepts bug-free programs and rejects buggy
+programs. An <em>unsound</em> program analysis accepts buggy programs.</li>
+</ul>
+<h2 id="iterative-approximation"><a class="header" href="#iterative-approximation">Iterative approximation</a></h2>
+<p><strong>Iterative approximation</strong> is a static analysis technique that iterates over
+the paths of a program, constantly updating inferred facts until it arrives at
+a complete understanding of the necessary values for each variable to reach a
+desired program path.</p>
+<h2 id="dynamic-vs-static-analysis"><a class="header" href="#dynamic-vs-static-analysis">Dynamic vs static analysis</a></h2>
+<p>The following are statements comparing to the <em>cost</em> and <em>effectiveness</em> of
+dynamic and static program analysis:</p>
+<ul>
+<li>Dynamic
+<ul>
+<li>Cost - Proportional of program's execution time</li>
+<li>Effectiveness - Unsound (may miss errors)</li>
+</ul>
+</li>
+<li>Static
+<ul>
+<li>Cost - Proportional to program's size</li>
+<li>Effectiveness - Incomplete (may report spurious errors)</li>
+</ul>
+</li>
+</ul>
+<h3 id="advantage-of-static-analysis-over-dynamic-analysis"><a class="header" href="#advantage-of-static-analysis-over-dynamic-analysis">Advantage of static analysis over dynamic analysis:</a></h3>
+<p><strong>Static analysis may achieve soundness</strong> - it is possible to design an analysis
+that does not miss an error in a program, even if some of errors reported may be
+false positives. Since static analysis does not require the program to be run,
+the cost to analyze a piece of software is proportional to its code size, not
+it’s runtime. Since static analysis does not require the program to be run, it
+can be performed on a machine without requiring that machine to be able to run
+the code.</p>
+<h3 id="advantage-of-dynamic-analysis-over-static-analysis"><a class="header" href="#advantage-of-dynamic-analysis-over-static-analysis">Advantage of dynamic analysis over static analysis:</a></h3>
+<p><strong>Dynamic analysis may achieve completeness</strong> - it is possible to design an
+analysis that will only report errors that can be triggered in a concrete
+execution of the program, even if some errors may be undiscovered due to
+limitations on the number of runs inspected. Since dynamic analysis is performed
+by observing a concrete run of a program, bugs found using this method are
+typically easy to report / reproduce.</p>
+<h2 id="undecidability-of-program-properties"><a class="header" href="#undecidability-of-program-properties">Undecidability of program properties</a></h2>
+<p>Questions like <em>&quot;Is a program point reachable on some input?&quot;</em> are
+<strong>undecidable</strong> meaning, we would need an infinite amount of time to conduct the
+program analysis to discover the answer to the proposed question. Program
+analysis can be sound and complete, but only if we never terminate. Thus,
+designing a program analysis is an art in which we balance how thorough the
+analysis is - the tradeoffs are dictated by the consumer of the analysis.</p>
+<h2 id="consumers-of-program-analysis"><a class="header" href="#consumers-of-program-analysis">Consumers of program analysis</a></h2>
+<ul>
+<li>Compilers - compilers utilize program analysis to optimize code, removing
+unnecessary code that results in the same outcome for an invariant.</li>
+<li>Software quality tools - tools for testing, debugging, and verification.
+Software quality tools are used for:
+<ul>
+<li>Finding programming errors</li>
+<li>Proving program invariants</li>
+<li>Generating test cases</li>
+<li>Localizing causes of errors</li>
+</ul>
+</li>
+<li>Integrated development environments (IDEs) - IDEs use program analysis to help
+programmers:
+<ul>
+<li>understand programs</li>
+<li>refactor programs</li>
+</ul>
+</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="introduction-to-software-testing"><a class="header" href="#introduction-to-software-testing">Introduction to Software Testing</a></h1>
+<p><strong>Software testing</strong> checks whether a program implementation agrees with a
+program specification. Without a specification, there is nothing to test.
+Testing is a form of consistency checking between implementation and
+specification.</p>
+<h2 id="automated-vs-manual-testing"><a class="header" href="#automated-vs-manual-testing">Automated vs manual testing</a></h2>
+<ul>
+<li><strong>Automated testing</strong>:
+<ul>
+<li>Finds bugs more quickly</li>
+<li>No need to write tests</li>
+<li>if software changes, no need to maintain tests</li>
+</ul>
+</li>
+<li><strong>Manual testing</strong>:
+<ul>
+<li>Efficient test suites</li>
+<li>Potentially better code coverage</li>
+</ul>
+</li>
+</ul>
+<h2 id="black-box-vs-white-box-testing"><a class="header" href="#black-box-vs-white-box-testing">Black-box vs white-box testing</a></h2>
+<ul>
+<li><strong>Black-box testing</strong>:
+<ul>
+<li>Can work with code that cannot be modified</li>
+<li>Does not need to analyze or study code</li>
+<li>Code can be in any format</li>
+</ul>
+</li>
+<li><strong>White-box testing</strong>:
+<ul>
+<li>Efficient test suite</li>
+<li>Better code coverage</li>
+</ul>
+</li>
+</ul>
+<h2 id="pre--and-post-conditions"><a class="header" href="#pre--and-post-conditions">Pre- and post-conditions</a></h2>
+<ul>
+<li>pre-condition - a predicate assumed to be true before a function executes</li>
+<li>post-condition - a predicate expected to be true after a function executes,
+whenever a pre-condition holds</li>
+</ul>
+<p>Pre and post-conditions are most useful if they are executable and written in
+the same programming language as the program under test. These conditions are
+a special case of <em>assertions</em>. Pre and post-conditions don't have to be
+precise, otherwise they might become more complex than the program under test.</p>
+<h2 id="using-pre-and-post-conditions"><a class="header" href="#using-pre-and-post-conditions">Using pre and post-conditions</a></h2>
+<p>Summarily, we check to see if a pre-condition holds prior to executing a test
+If not, the test fails. Next we execute the function with the inputs defined by
+the pre-condition, checking to see if the post-condition is true based upon the
+output of the function. If we detect deviation from the post-condition, the test
+fails. Else, the test succeeds and we move onto the next test case.</p>
+<h2 id="code-coverage"><a class="header" href="#code-coverage">Code coverage</a></h2>
+<p><strong>Code coverage</strong> is a metric to quantify the extent to which a program's code
+is tested by a given test suite. <strong>Code coverage</strong> is quantified as a percentage
+of some aspect of the program executed in the tests. Some of the most popular
+types of code coverage can be found below:</p>
+<ul>
+<li>Function coverage - what percentage of functions were called?</li>
+<li>Statement coverage - what percentage of statements were executed?</li>
+<li>Branch coverage - what percentaged of branches were taken?</li>
+</ul>
+<h2 id="mutation-analysis"><a class="header" href="#mutation-analysis">Mutation analysis</a></h2>
+<p><strong>Mutation analysis</strong> is founded on the <em>&quot;competent programmer assumption&quot;</em> -
+the program is close to right to begin with and the existing bugs are minor. The
+key idea behind mutation analysis is to test mutants of the program to determine
+if the test suite is good. If the test suite is good, mutants should fail the
+tests because their code is incorrectly mutated. If a test suite is unsound, it
+will accept mutants - we must continue to add test cases to the test suite to
+distinguish mutants from the original program.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="introduction-to-random-testing"><a class="header" href="#introduction-to-random-testing">Introduction to Random Testing</a></h1>
+<h2 id="random-testing-fuzzing"><a class="header" href="#random-testing-fuzzing">Random testing (fuzzing)</a></h2>
+<p><strong>Random testing</strong> or <strong>fuzzing</strong> is the practice of feeding random inputs to a
+program, observing whether or not it behaves <em>correctly</em>. During this
+observation, we determine if the execution of the program satisfies the given
+specification or if it doesn't crash from random inputs.</p>
+<p><strong>Fuzzing</strong> can be viewed as a special case of mutation analysis.</p>
+<h2 id="cuzz-fuzzing-thread-schedules"><a class="header" href="#cuzz-fuzzing-thread-schedules">Cuzz: fuzzing thread schedules</a></h2>
+<p><strong>Cuzz</strong>, the Microsoft multi-threaded application fuzzer, introduces <code>sleep()</code>
+calls automatically in order to suss our concurrency-related bugs in the program
+under test. This makes concurrency testing less tedious and error-prone in
+comparison to a human analysis, and the <code>sleep()</code> calls are introduced
+systematically before each statement.</p>
+<p>This method of fuzzing multi-threaded programs provides us with the worst-case
+probabilistic guarantee on finding bugs.</p>
+<h2 id="depth-of-concurrency-bugs"><a class="header" href="#depth-of-concurrency-bugs">Depth of concurrency bugs</a></h2>
+<ul>
+<li><strong>Bug depth</strong> - the number of <em>ordering constraints</em> a thread schedule has to
+satisfy to find the bug.</li>
+<li><strong>Ordering constraints</strong> - the order in which statements have to execute to
+introduce a bug.</li>
+</ul>
+<p>From real-world studies using Cuzz, testers observed that many
+concurrency-related bugs have a shallow bug depth.</p>
+<h2 id="probabilistic-guarantee"><a class="header" href="#probabilistic-guarantee">Probabilistic guarantee</a></h2>
+<p>Cuzz provides a <strong>probabilistic guarantee</strong> that a bug will be discovered in the
+program using the following equation:</p>
+<ul>
+<li><strong>n</strong> threads</li>
+<li><strong>k</strong> steps</li>
+<li><strong>d</strong> bug depth</li>
+<li><strong>probability</strong> == <code>1 / (n * (k**(d-1)))</code></li>
+</ul>
+<h2 id="measured-vs-worst-case-probability"><a class="header" href="#measured-vs-worst-case-probability">Measured vs worst-case probability</a></h2>
+<ul>
+<li>The worst-case guarantee to find a concurrency-related bug with Cuzz is for
+the <em>hardest-to-find</em> bug of a given depth. If multiple bugs exist, the
+probability of finding a bug, in general, increases. As the number of threads
+increases in the program, the odds of triggering a bug increases.</li>
+</ul>
+<h2 id="random-testing-pros-and-cons"><a class="header" href="#random-testing-pros-and-cons">Random testing: pros and cons</a></h2>
+<ul>
+<li>
+<p><strong>Pros</strong>:</p>
+<ul>
+<li>Easy to implement</li>
+<li>Good coverage given enough tests</li>
+<li>Works against programs of any format</li>
+<li>Useful for finding security vulnerabilities</li>
+</ul>
+</li>
+<li>
+<p><strong>Cons</strong>:</p>
+<ul>
+<li>Inefficient test suites</li>
+<li>Finds bugs that might be unimportant</li>
+<li>Poor code coverage</li>
+</ul>
+</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="automated-test-generation"><a class="header" href="#automated-test-generation">Automated Test Generation</a></h1>
+<h2 id="outline"><a class="header" href="#outline">Outline</a></h2>
+<p>In previous chapters were covered random testing, or fuzzing. In this lesson,
+we'll cover automated test generation that takes a more directed approach. Some
+methodologies and examples are:</p>
+<ul>
+<li>Systematic testing - <code>Korat</code> is a tool that conducts systematic testing
+<ul>
+<li>This test suite targets programs with linked data structures</li>
+</ul>
+</li>
+<li>Feedback-directed random testing - <code>Randoop</code> is a tool that conducts this type
+of testing.
+<ul>
+<li>This test suite targets Java Classes and Libraries.</li>
+</ul>
+</li>
+</ul>
+<h2 id="insights"><a class="header" href="#insights">Insights</a></h2>
+<p>Procedures have an infinite number of possible test inputs, however, only a
+finite number of test inputs are worth testing against the program. An insight
+is that, for test generation, we often find that systematically testing all
+inputs up to a small size can uncover a majority of the bugs.</p>
+<h3 id="small-test-case-hypothesis"><a class="header" href="#small-test-case-hypothesis">Small test case hypothesis</a></h3>
+<p>The <strong>small test case hypothesis</strong> is, if there is any test that causes the
+program to fail, this is such a small test. If a list function works for lists
+of length <code>0</code> through <code>3</code>, it probably works for all lists - the function is
+oblivious to the length.</p>
+<h2 id="korat-test-generation"><a class="header" href="#korat-test-generation">Korat test generation</a></h2>
+<p>Remember, <code>Korat</code> targets applications / libraries with linked data structures.
+What <code>Korat</code> does is enumerate the types of each member of each data structure,
+determining what values each Class and Node can contain. <code>Korat</code> then generates
+test structures for all possible shapes of a given data structure.</p>
+<h2 id="korats-algorithm"><a class="header" href="#korats-algorithm">Korat's algorithm</a></h2>
+<p>The basic algorithm that <code>Korat</code> uses to test programs is as follows:</p>
+<ul>
+<li>User selects maximum input size <code>k</code></li>
+<li>Generate all possible inputs up to size <code>k</code></li>
+<li>Discard inputs where the <code>pre-condition</code> for the function is <code>false</code></li>
+<li>Run program on remaining inputs</li>
+<li>Check results using the function's <code>post-condition</code></li>
+</ul>
+<h2 id="the-general-case-for-binary-trees"><a class="header" href="#the-general-case-for-binary-trees">The general case for binary trees</a></h2>
+<p>To calculate the number of possible binary trees for <code>k</code> nodes, the formula is:</p>
+<p><code>(k + 1)^(2k + 1)</code></p>
+<h3 id="an-overestimate"><a class="header" href="#an-overestimate">An overestimate</a></h3>
+<p>The formula above is an overestimation of the number of possible binary trees.
+Some of the tree shapes provided in the above equation are not even tree-shaped,
+and many of them are isomorphic - exactly the same shape as other possible
+combinations. In reality, there are only 9 distinct binary trees with at most
+3 nodes.</p>
+<h2 id="determining-the-precondition"><a class="header" href="#determining-the-precondition">Determining the precondition</a></h2>
+<p><code>Korat</code> uses a specific technique to cull test inputs by instrumenting the
+pre-condition of the function under test. <code>Korat</code> adds code to the function's
+actions, observing the fields accessed by the function. This allows them with
+the ability to enumerate the precondition - if a field isn't accessed by a
+precondition the precondition does not depend on the field.</p>
+<h2 id="enumerating-tests"><a class="header" href="#enumerating-tests">Enumerating tests</a></h2>
+<p><code>Korat</code> enumerates shapes by their associated vectors:</p>
+<ul>
+<li>In the initial test candidate, all fields are null</li>
+<li>The next shape is generated by:
+<ul>
+<li>Expanding the last field accessed by the pre-condition</li>
+<li>Backtracking if all possibilities for a field are exhausted</li>
+</ul>
+</li>
+</ul>
+<p>The key idea in this methodology is that <code>Korat</code> never expands parts of the test
+input if it's not examined by the function's pre-condition. <code>Korat</code> also checks
+for and discards shapes that are isomorphic to previously generated shapes.</p>
+<h2 id="strengths-and-weaknesses-of-korat"><a class="header" href="#strengths-and-weaknesses-of-korat">Strengths and weaknesses of Korat</a></h2>
+<p><code>Korat</code> is strong when we can enumerate all possibilities, for example a small
+test case for four nodes, two edges per node. <code>Korat</code> is good for:</p>
+<ul>
+<li>Linked data structures</li>
+<li>Small, easily specified procedures</li>
+<li>Unit testing</li>
+</ul>
+<p><code>Korat</code> is weaker for:</p>
+<ul>
+<li>Integers, Floating-point numbers, strings</li>
+</ul>
+<p><code>Korat</code> is also as weak as the pre-condition for a function under test. If the
+pre-condition is not specific and thorough enough, <code>Korat</code> will generate
+less-than-useful test conditions.</p>
+<h2 id="overview-of-randoop"><a class="header" href="#overview-of-randoop">Overview of Randoop</a></h2>
+<p>The problem with uniform random testing is that it creates too many illegal or
+redundant tests. <code>Randoop</code> aims to randomly create new tests guided by feedback
+from previously generated tests. <code>Randoop</code>'s recipe is as follows:</p>
+<ul>
+<li>Build new sequences incrementally, extending past sequences</li>
+<li>As soon as a sequence is created, execute it</li>
+<li>Use execution results to guide test generation towards sequences that create
+new object states</li>
+</ul>
+<h3 id="sequence-types"><a class="header" href="#sequence-types">Sequence types</a></h3>
+<ul>
+<li>Illegal sequence - sequences that crash before the contract is checked, e.g.
+throw an exception</li>
+<li>Redundant sequence - <code>Randoop</code> maintains a set of all objects created in
+execution of each sequence. A sequence is redundant if an object created during
+its execution belongs to an object in the maintained set.</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="dataflow-analysis"><a class="header" href="#dataflow-analysis">Dataflow Analysis</a></h1>
+<h2 id="what-is-dataflow-analysis"><a class="header" href="#what-is-dataflow-analysis">What is dataflow analysis?</a></h2>
+<ul>
+<li>Static analysis reasoning about the flow of data within a program</li>
+<li>Different kinds of data can be tracked with dataflow analysis:
+<ul>
+<li>Constants</li>
+<li>Variables</li>
+<li>Expressions</li>
+</ul>
+</li>
+<li>Dataflow analysis is used by bug-finding tools and compilers</li>
+</ul>
+<h2 id="soundness-completeness-and-termination"><a class="header" href="#soundness-completeness-and-termination">Soundness, completeness, and termination</a></h2>
+<p>It is impossible for a software analysis to achieve all three of these
+objectives - dataflow analysis sacrifices <strong>completeness</strong>. Dataflow analysis is
+sound in that it will report all facts that could occur in actual runs. Dataflow
+analysis is incomplete in that it may report additional facts that can't occur
+in actual runs.</p>
+<h2 id="abstracting-control-flow-conditions"><a class="header" href="#abstracting-control-flow-conditions">Abstracting control-flow conditions</a></h2>
+<p>Dataflow analysis abstracts away control-flow conditions that contain
+non-deterministic choices - it assumes that some conditions are able to evaluate
+to true or false. It considers all paths possible in actual runs (sound) and
+maybe paths that are never possible during (incomplete).</p>
+<h2 id="applications-of-dataflow-analysis"><a class="header" href="#applications-of-dataflow-analysis">Applications of dataflow analysis</a></h2>
+<ul>
+<li>Reaching definitions analysis
+<ul>
+<li>This software analysis application using dataflow analysis is aimed at
+finding the usage of uninitialized variables in the program</li>
+</ul>
+</li>
+<li>Very busy expressions analysis
+<ul>
+<li>This software analysis application using dataflow analysis is aimed at
+reducing code size</li>
+</ul>
+</li>
+<li>Available expressions analysis
+<ul>
+<li>This software analysis application using dataflow analysis is aimed at
+avoiding recomputing expressions - useful for compiler design</li>
+</ul>
+</li>
+<li>Live variables analysis
+<ul>
+<li>This software analysis application using dataflow analysis is aimed at
+allocating registers efficiently for data storage - useful for compiler design</li>
+</ul>
+</li>
+</ul>
+<h2 id="reaching-definitions-analysis"><a class="header" href="#reaching-definitions-analysis">Reaching definitions analysis</a></h2>
+<p>The goal of <strong>reaching definitions analysis</strong> is to determine, for each program
+point, which assignments have been made and not overwritten when execution
+reaches that point along some path</p>
+<h3 id="does-the-reaching-definitions-analysis-always-terminate"><a class="header" href="#does-the-reaching-definitions-analysis-always-terminate">Does the reaching definitions analysis always terminate?</a></h3>
+<p>Yes, the <strong>chaotic iteration algorithm</strong> used by RDA <em>always</em> terminates. This
+is because:</p>
+<ul>
+<li>The two operations of RDA are <em>monotonic</em> - meaning the <strong>IN</strong> and <strong>OUT</strong>
+sets never shrink, only grow</li>
+<li>Largest the <strong>IN</strong> and <strong>OUT</strong> sets can be are all definitions in the program</li>
+</ul>
+<ul>
+<li>they cannot grow forever</li>
+</ul>
+<ul>
+<li><strong>IN</strong> and <strong>OUT</strong> will stop changing after some iteration</li>
+</ul>
+<h2 id="very-busy-expressions-analysis"><a class="header" href="#very-busy-expressions-analysis">Very busy expressions analysis</a></h2>
+<p>The goal of <strong>very busy expressions analysis</strong> is to identify very busy
+expression at the exit from the point. An expression is very busy if, no matter
+what path is taken, the expression is used before any of the variables used in
+it are redefined.</p>
+<h2 id="available-expression-analysis"><a class="header" href="#available-expression-analysis">Available expression analysis</a></h2>
+<p>The goal of <strong>available expressions analysis</strong> is to identify, for each program
+point, which expressions must already have been computed, and not later
+modified, on all paths to the program point.</p>
+<h2 id="live-variables-analysis"><a class="header" href="#live-variables-analysis">Live variables analysis</a></h2>
+<p>The goal of <strong>live variables analysis</strong> is to identify, for each program point,
+which variables could be <em>live</em> at the point's exit. A variables is <em>live</em> if
+there is a path to a use of the variable that doesn't redefine the variable.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="pointer-analysis"><a class="header" href="#pointer-analysis">Pointer Analysis</a></h1>
+<p>In the previous lesson we learned about tracking the flow of primitive data
+types like integers. In this lesson, we'll learn how to track and analyze more
+complex types of data, namely pointers, objects, and references.</p>
+<p>This sort of analysis is called <strong>pointer analysis</strong>.</p>
+<h2 id="introducing-pointers"><a class="header" href="#introducing-pointers">Introducing pointers</a></h2>
+<ul>
+<li><strong>Field write</strong> - an operation where a value is written to an attribute of
+a class or structure via a pointer to that object or structure.</li>
+<li><strong>Field read</strong> - an operation where a value is read from an attribute of a
+class or structure via a pointer to that object or structure.</li>
+</ul>
+<h2 id="pointer-aliasing"><a class="header" href="#pointer-aliasing">Pointer aliasing</a></h2>
+<p><strong>Pointer aliasing</strong> is a situation in which the same address in memory is
+referred to in different ways.</p>
+<h2 id="approximation-to-the-rescue"><a class="header" href="#approximation-to-the-rescue">Approximation to the rescue</a></h2>
+<p><strong>Pointer analysis</strong> is hard because there are so many different ways to
+reference pointer values - the lectures provide the example of a linked list.
+We must sacrifice some combination of <strong>soundness</strong>, <strong>completeness</strong>, and
+<strong>termination</strong> in order to have a decidable pointer analysis. We sacrifice
+completeness, causing us to have <strong>false positives, but no false negatives</strong>.</p>
+<p>What does this mean? In the <strong>May-Alias</strong> case, a pointer may be aliased or it
+may not. This creates a false positive because we'll have two determinations
+about the outcome of a specific line of code - one of these will be a
+<strong>false positive</strong>.</p>
+<p>There are many sound, approximate algorithms for pointer analysis with varying
+levels of precision. Most of these algorithms differ in two key aspects:</p>
+<ul>
+<li>How to abstract the <strong>heap</strong></li>
+<li>How to abstract control-flow</li>
+</ul>
+<h2 id="abstracting-the-heap"><a class="header" href="#abstracting-the-heap">Abstracting the heap</a></h2>
+<p><strong>Points-to Graph</strong> is an abstraction of allocations that occurs within the
+program. It collapses arrays of allocated chunks into a single node, denoting
+the existence or multiple chunks within a single array using an asterisk. This
+abstraction is only concerned with creating a graph of relationships between
+allocated objects, and creates directed edges based upon these allocations in
+the source code.</p>
+<h2 id="kinds-of-statements"><a class="header" href="#kinds-of-statements">Kinds of statements</a></h2>
+<p>The following are the kinds of statements that we must track in order to
+implement the pointer analysis chaotic iteration algorithm:</p>
+<ul>
+<li><strong>Object allocation</strong> - <code>v = new ...</code></li>
+<li><strong>Object copy statement</strong> - <code>v = v2</code></li>
+<li><strong>Field read</strong> - <code>v2 = v.f</code></li>
+<li><strong>Field write</strong> - <code>v.f = v2</code></li>
+<li><strong>Array-based field read</strong> - <code>v2 = v[*]</code></li>
+<li><strong>Array-based field write</strong> - <code>v[*] = v2</code></li>
+</ul>
+<h2 id="rule-for-object-allocation-sites"><a class="header" href="#rule-for-object-allocation-sites">Rule for object allocation sites</a></h2>
+<p>When an object is allocated, we use a weak re-assignment rule. Essentially, once
+an object is allocated and assigned to a variable, a new node is created on the
+graph and the variable points to the new node - if the variable didn't already
+exist then it is created on the graph.</p>
+<p>The weak re-assignment rule comes in when, if a variable already exists and
+points to an object, we allow the variable to point to the new node recently
+allocated, accumulating assignments.</p>
+<h2 id="rule-for-object-copy"><a class="header" href="#rule-for-object-copy">Rule for object copy</a></h2>
+<p>When an object is copied to a new variable, the new variable just copies all
+existing edges to nodes of the copied variable. No existing nodes are
+overwritten, just accumulated.</p>
+<h2 id="rule-for-field-writes"><a class="header" href="#rule-for-field-writes">Rule for field writes</a></h2>
+<p>In this example, if a variable points to Node A and another variable points to
+Node B, when the field of the first variable is assigned to the second variable,
+an edge is drawn between Node A and Node B. Thus, Node A's field is assigned
+to be the value of the second variable, or Node B.</p>
+<h2 id="rules-for-field-reads"><a class="header" href="#rules-for-field-reads">Rules for field reads</a></h2>
+<p>In this example, we assigned a variable the value of another variable's field.
+So if the second variable points to Node B, and Node B's field is assigned Node
+C, then the first variable is assigned Node C (Node B's field).</p>
+<h2 id="classifying-pointer-analysis-algorithms"><a class="header" href="#classifying-pointer-analysis-algorithms">Classifying pointer analysis algorithms</a></h2>
+<p>The following are dimensions upon which pointer analysis algorithms are
+classified:</p>
+<ul>
+<li>Is it flow-sensitive?</li>
+<li>Is it context-sensitive?</li>
+<li>What heap abstractions scheme is used?</li>
+<li>How are aggregate data types modeled?</li>
+</ul>
+<h2 id="flow-sensitivity"><a class="header" href="#flow-sensitivity">Flow sensitivity</a></h2>
+<p><strong>Flow sensitivity</strong> describes how an algorithm models control-flow <strong>within</strong>
+a procedure. There are two kinds of flow sensitivity:</p>
+<ul>
+<li><strong>Flow-insensitive</strong> - weak updates on data, never killing any previously
+generated facts.
+<ul>
+<li>Suffices for may-alias analysis</li>
+</ul>
+</li>
+<li><strong>Flow-sensitive</strong> - strong updates on data, kills previously generated facts
+when encountering new data
+<ul>
+<li>Required for must-alias analysis</li>
+</ul>
+</li>
+</ul>
+<h2 id="context-sensitivity"><a class="header" href="#context-sensitivity">Context sensitivity</a></h2>
+<p><strong>Context sensitivity</strong> describes how an algorithm models control-flow
+<strong>across</strong> procedures. There are two kinds of context sensitivity:</p>
+<ul>
+<li><strong>Context-insensitive</strong> - analyze each procedure only once, regardless of how
+many times the program encounters a procedure</li>
+<li><strong>Context-sensitive</strong> - analyze each procedure possibly multiple times, once
+per abstract calling context</li>
+</ul>
+<h2 id="heap-abstraction"><a class="header" href="#heap-abstraction">Heap abstraction</a></h2>
+<p><strong>Heap abstraction</strong> is the scheme to partition unbounded sets of concrete
+objects into finitely many <strong>abstract objects</strong> - represented by oval nodes
+in our point-to graph representations.</p>
+<p><strong>Heap abstraction</strong> ensures that pointer analysis terminates. There are various
+sound schemes, however, the following are determinations about precision and
+efficiency for different schemes:</p>
+<ul>
+<li>Too few abstract objects results in <strong>efficient</strong> but <strong>imprecise</strong> analysis</li>
+<li>Too many abstract objects results in <strong>expensive</strong> but <strong>precise</strong> analysis</li>
+</ul>
+<h3 id="scheme-1-allocation-site-based"><a class="header" href="#scheme-1-allocation-site-based">Scheme 1: allocation-site based</a></h3>
+<p>This scheme of heap abstraction is the same one we covered during this lesson.
+It tracks one abstract object per <strong>allocation site</strong>. Allocation sites are
+identified by:</p>
+<ul>
+<li>the <strong>new</strong> keyword in Java/C++</li>
+<li>the <strong>malloc()</strong> (or equivalent) call in C</li>
+</ul>
+<p>Because there are finitely many allocation sites in programs, this scheme
+results in finitely many abstract objects.</p>
+<h3 id="scheme-2-type-based"><a class="header" href="#scheme-2-type-based">Scheme 2: type based</a></h3>
+<p>The allocation-site based scheme can be costly due to the following:</p>
+<ul>
+<li>The analysis of large programs</li>
+<li>Clients needing a quick turnaround time for analysis</li>
+<li>Overly fine granularity of sites unnecessary</li>
+</ul>
+<p>In the <strong>type based</strong> scheme, on abstract object is tracker per <strong>type</strong> in the
+program. This results in finitely many types and finitely many abstract objects.</p>
+<h3 id="scheme-3-heap-insensitive"><a class="header" href="#scheme-3-heap-insensitive">Scheme 3: heap-insensitive</a></h3>
+<p>The <strong>heap-insensitive</strong> scheme tracks a <strong>single</strong> abstract object representing
+the entire heap. This is obviously imprecise, but has its uses for programming
+languages like C where stack-directed pointers derive better pointer analysis.
+This scheme is unsuitable for languages that make great usage of the heap like
+Java.</p>
+<h2 id="modeling-aggregate-data-types-records"><a class="header" href="#modeling-aggregate-data-types-records">Modeling aggregate data types: records</a></h2>
+<p>Three choices exist for the modeling of <strong>records</strong>, otherwise known as structs
+or objects:</p>
+<ol>
+<li><strong>Field-insensitive</strong> - merge <strong>all</strong> fields of each record object</li>
+</ol>
+<ul>
+<li>This makes it difficult for an analysis to track reads and writes to
+specific attributes of an object or structure</li>
+</ul>
+<ol start="2">
+<li><strong>Field-based</strong> - merge <strong>each</strong> field of all record objects</li>
+</ol>
+<ul>
+<li>This makes it difficult for an analysis to distinguish between fields of
+different objects or structures</li>
+</ul>
+<ol start="3">
+<li><strong>Field-sensitive</strong> - keep <strong>each</strong> field of <strong>each</strong> record separate</li>
+</ol>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="constraint-based-analysis"><a class="header" href="#constraint-based-analysis">Constraint Based Analysis</a></h1>
+<p><strong>Constraint based analysis</strong> is a dominant approach to program analysis and is
+declarative in nature. Constraint based analysis is concerned with expressing
+what the analysis computes, not <em>how</em> it computes it. Constraint based analysis
+is concerned with the <strong>specification</strong> of the analysis rather than the
+<strong>implementation</strong> of the analysis. This type of analysis has the following
+advantages:</p>
+<ul>
+<li>Simplification of design and understanding of analysis</li>
+<li>Allows for rapid prototyping</li>
+<li>Continuous performance and improvement</li>
+</ul>
+<h2 id="motivation"><a class="header" href="#motivation">Motivation</a></h2>
+<p>Designing an efficient program analysis is a challenging task that requires the
+analyst to define the <strong>specification</strong> and <strong>implementation</strong> of the program
+analysis, e.g.:</p>
+<ul>
+<li><strong>Specification</strong> - &quot;what&quot;; no null pointer is dereferenced along any path in
+the program</li>
+<li><strong>Implementation</strong> - &quot;how&quot;; many design choices exist here:
+<ul>
+<li>forward vs backward traversal of the program</li>
+<li>symbolic vs explicit representation of the program state</li>
+<li>etc.</li>
+</ul>
+</li>
+</ul>
+<h2 id="what-is-constraint-based-analysis"><a class="header" href="#what-is-constraint-based-analysis">What is constraint based analysis?</a></h2>
+<p>In constraint based analysis, an analyst will define the constrains using a
+<strong>constraint language</strong> - the implementation of the program analysis will be
+automated by the <strong>constraint solver</strong>.</p>
+<h2 id="benefits-of-constraint-based-analysis"><a class="header" href="#benefits-of-constraint-based-analysis">Benefits of constraint based analysis</a></h2>
+<p>The following are some benefits of constraint based analysis:</p>
+<ul>
+<li>Separates analysis specification from implementation
+<ul>
+<li>Analysis writer can focus on <em>what</em> rather than <em>how</em></li>
+</ul>
+</li>
+<li>Yields natural program specifications
+<ul>
+<li>Constraints are usually <em>local</em>, whose conjunctions capture <em>global</em>
+properties</li>
+</ul>
+</li>
+<li>Enables sophisticated analysis implementations
+<ul>
+<li>Leverage powerful, off-the-shelf solvers for implementation</li>
+</ul>
+</li>
+</ul>
+<h2 id="what-is-datalog"><a class="header" href="#what-is-datalog">What is Datalog?</a></h2>
+<p><strong>Datalog</strong> is:</p>
+<ul>
+<li>A declarative logic programming language</li>
+<li><strong>Not Turing-complete</strong>: subset of Prolog, or SQL with recursion
+<ul>
+<li>Efficient algorithms exist to evaluate Datalog programs</li>
+</ul>
+</li>
+</ul>
+<p><strong>Datalog</strong>:</p>
+<ul>
+<li>Originated as a query language for deductive databases</li>
+<li><strong>Later applied in many other domains</strong>:
+<ul>
+<li><strong>software analysis</strong></li>
+<li>data mining</li>
+<li>networking</li>
+<li>security</li>
+<li>knowledge representation</li>
+<li>cloud-computing</li>
+<li>etc</li>
+</ul>
+</li>
+<li>Many implementations are based on Datalog, e.g.:
+<ul>
+<li>Logicblox</li>
+<li>bddbddb</li>
+<li>IRIS</li>
+<li>Paddle</li>
+</ul>
+</li>
+</ul>
+<h2 id="cloning-based-inter-procedural-analysis"><a class="header" href="#cloning-based-inter-procedural-analysis">Cloning based inter-procedural analysis</a></h2>
+<p>To enable <strong>context-sensitivity</strong> for program analysis using the methods
+described in this lecture, one can clone variables on a points-to graph
+analysis generated by pointer analysis. This prevents us from losing context,
+conducting inter-procedural analysis.</p>
+<p>Through this technique, we achieve context sensitivity because we are
+<strong>inlining</strong> procedure calls. This increases our precision, but decreases our
+scalability. </p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="type-systems"><a class="header" href="#type-systems">Type Systems</a></h1>
+<p>Type systems are usually specified as part of the programming language and are
+usually built into compilers or interpreters fro the language. The main purpose
+of type systems is to reduce the possibility of software bugs by checking for
+logic errors.</p>
+<p>A common type of error detected using type systems analysis is applying
+operations to operands, e.g. adding an integer to a string in a Java program.
+Type systems catch these error using a collection of rules, assigning types to
+different parts of the program, i.e.:</p>
+<ul>
+<li>Variables</li>
+<li>Expressions</li>
+<li>Functions</li>
+</ul>
+<h2 id="what-is-a-type"><a class="header" href="#what-is-a-type">What is a type?</a></h2>
+<p>A <strong>type</strong> is a <strong>set of values</strong>. For example, in Java:</p>
+<ul>
+<li><code>int</code> is the set of all integers between <code>-2^31</code> and <code>(2^31)-1</code></li>
+<li><code>double</code> is the set of all double-precision floating point numbers</li>
+<li><code>boolean</code> is the set {<code>true</code>, <code>false</code>}</li>
+</ul>
+<p>Some more examples related to object-oriented types and functions are as
+follows:</p>
+<ul>
+<li><code>Foo</code> is the set of all objects of class <code>Foo</code></li>
+<li><code>List&lt;Integer&gt;</code> is the set of all <code>Lists</code> of <code>Integer</code> objects
+<ul>
+<li><code>List</code> is a <strong>type constructor</strong></li>
+<li><code>List</code> acts as a function from types to types</li>
+</ul>
+</li>
+<li><code>int -&gt; int</code> is the set of functions taking an <code>int</code> as a parameter and
+returning another <code>int</code></li>
+</ul>
+<h2 id="abstraction"><a class="header" href="#abstraction">Abstraction</a></h2>
+<p>All static analyses use <strong>abstraction</strong>, representing sets of concrete values
+as abstract values.</p>
+<h3 id="why"><a class="header" href="#why">Why?</a></h3>
+<p>Without abstraction, we can't directly reason about infinite sets of concrete
+values - this would not guarantee <strong>termination</strong>. <strong>Abstraction</strong> improves
+performance even in the case of large, finite sets. In type systems,
+abstractions are called <strong>types</strong>.</p>
+<h2 id="notation-for-inference-rules"><a class="header" href="#notation-for-inference-rules">Notation for inference rules</a></h2>
+<p>Inference rules have the following form:</p>
+<ul>
+<li>If <strong>hypothesis</strong> is true, then <strong>conclusion</strong> is true.</li>
+</ul>
+<p>Type checking computes via reasoning:</p>
+<ul>
+<li>If <strong>e1</strong> is an <strong>int</strong> and <strong>e2</strong> is a <strong>double</strong>, then <strong>e1 * e2</strong> is a
+<strong>double</strong></li>
+</ul>
+<p>The above statement in translated from English to a type analysis
+<strong>inference rule</strong> is as follows:</p>
+<ul>
+<li><code>(e1 : int ^ e2 : double) =&gt; e1 * e2 : int</code></li>
+</ul>
+<h2 id="soundness"><a class="header" href="#soundness">Soundness</a></h2>
+<p><strong>Soundness</strong> is extremely useful, program type checks lead to no errors at
+runtime and <strong>verifies</strong> the absence of a class of errors relating to bad
+typing. A <strong>sound</strong> type systems analysis provides a strong guarantee, verifying
+the property of soundness holds across all executions:
+<em>&quot;Well-typed programs cannot go wrong.&quot;</em></p>
+<p><strong>Soundness</strong> comes at a price and can lead to <strong>false positives</strong>.</p>
+<h2 id="global-analysis"><a class="header" href="#global-analysis">Global analysis</a></h2>
+<p>Also called <strong>top-down analysis</strong>, <strong>global analysis</strong> requires the entire
+program to be inspected, constructing a <strong>model</strong> of the environment, required
+to analyze sub-expressions.</p>
+<h2 id="local-analysis"><a class="header" href="#local-analysis">Local analysis</a></h2>
+<p>Also called <strong>bottom-up analysis</strong>, <strong>local analysis</strong> infers multiple
+environments from each expression analyzed, combining its inferences at the end
+of the analysis.</p>
+<h2 id="global-vs-local-analysis"><a class="header" href="#global-vs-local-analysis">Global vs local analysis</a></h2>
+<p>The following is a comparison of global vs local analysis:</p>
+<ul>
+<li><strong>Global analysis</strong>:
+<ul>
+<li>Usually technically simpler than local analysis</li>
+<li>May need extra work to model environments for unfinished programs</li>
+</ul>
+</li>
+<li><strong>Local analysis</strong>:
+<ul>
+<li>More flexible in application</li>
+<li><strong>Technically harder</strong>: Need to allow unknown parameters, more side
+conditions</li>
+</ul>
+</li>
+</ul>
+<h2 id="flow-insensitivity"><a class="header" href="#flow-insensitivity">Flow insensitivity</a></h2>
+<p><strong>Type systems</strong> are generally flow-insensitive meaning their analysis is
+independent of the ordering of sub-expressions - analysis results are
+unaffected by permuting statements.</p>
+<p>This attribute of <strong>type systems analysis</strong> is helpful for the following
+reasons:</p>
+<ul>
+<li>No need for modeling a separate state for each sub-expression</li>
+<li>Flow insensitive analyses are often very efficient and scalable</li>
+</ul>
+<p>This is nice but, due to these attributes, type systems analysis can also be
+<strong>imprecise</strong>.</p>
+<h2 id="flow-sensitivity-1"><a class="header" href="#flow-sensitivity-1">Flow sensitivity</a></h2>
+<p><strong>Dataflow analysis</strong> in contrast is an example of flow-sensitive analysis. As
+rules produce new environments, the analysis of a sub-expression cannot take
+place until its environment is available. The analysis results in this case are
+dependent on the <strong>order of statements</strong>.</p>
+<h2 id="path-sensitivity"><a class="header" href="#path-sensitivity">Path sensitivity</a></h2>
+<p>For <strong>path sensitive</strong> analysis using a <strong>type systems analysis</strong>, part of the
+environment now contains a <strong>predicate</strong> declaring under what conditions an
+expression is executed. Each sub-expression has different predicates defined
+at different decision points.</p>
+<p>At points where control paths merge, different paths will still be denoted
+in the output results / final environment.</p>
+<p><strong>Symbolic execution</strong> is an example of a path-sensitive analysis.
+Path-sensitive analyses can be expensive, as there are an exponential number of
+paths to track. This program analyses are often implemented with backtracking,
+i.e. the exploration of one path until it ends and then starting another.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="statistical-debugging"><a class="header" href="#statistical-debugging">Statistical Debugging</a></h1>
+<h2 id="introduction-to-statistical-debugging"><a class="header" href="#introduction-to-statistical-debugging">Introduction to statistical debugging</a></h2>
+<p>In layman terms, <strong>statistical debugging</strong> is the process of acquiring bug
+statistics from dynamic runs of a particular piece of code from remote clients.
+So, if an error occurs, a user can provide the development team backtraces,
+crash dumps, etc. via the internet to a central debug server for the team's
+review. Acquisition of debug information allows teams to narrow down where a
+particular bug exists in the code.</p>
+<h2 id="statistical-debugging-motivations"><a class="header" href="#statistical-debugging-motivations">Statistical debugging motivations</a></h2>
+<p>Despite our best efforts, bug will escape developer testing and analysis tools,
+and these bugs will eventually be introduced into production. This is due to the
+following reasons:</p>
+<ul>
+<li>Dynamic analysis is unsound, and will inevitably not find all existing bugs.</li>
+<li>Static analysis is incomplete, and may report false bugs.</li>
+<li>Software development has limited resource, e.g. time, money, and people</li>
+</ul>
+<p>Due the reasons above, sometimes our software ships with unknown, and sometimes
+known, bugs.</p>
+<h2 id="benefits-of-statistical-debugging"><a class="header" href="#benefits-of-statistical-debugging">Benefits of statistical debugging</a></h2>
+<p>Actual runs of code a great resource for debugging for the following reasons:</p>
+<ul>
+<li>Crowdsource-based testing
+<ul>
+<li>In this case the number of real runs is greater than the number of testing
+runs.</li>
+</ul>
+</li>
+<li>Reality-directed debugging
+<ul>
+<li>Real-world runs are the ones that matter most</li>
+</ul>
+</li>
+</ul>
+<h2 id="practical-challenges"><a class="header" href="#practical-challenges">Practical challenges</a></h2>
+<p>The following are some practical challenges that face statistical debugging:</p>
+<ol>
+<li>Complex systems</li>
+</ol>
+<ul>
+<li>Millions of lines of code are deployed by developers</li>
+<li>This code usually contains a mix of controlled and uncontrolled code</li>
+</ul>
+<ol start="2">
+<li>Remote monitoring constraints</li>
+</ol>
+<ul>
+<li>On remote devices, we will have limited disk space, network bandwidth, and
+power to send bug reports</li>
+</ul>
+<ol start="3">
+<li>Incomplete information</li>
+</ol>
+<ul>
+<li>We must limit performance overhead on deployed applications for statistical
+debugging</li>
+<li>We must ensure to respect the privacy and security of our users</li>
+</ul>
+<h2 id="the-approach"><a class="header" href="#the-approach">The approach</a></h2>
+<p>Our approach to statistical debugging follows three steps:</p>
+<ol>
+<li>Guess the behaviors that are &quot;potentially interesting&quot;</li>
+</ol>
+<ul>
+<li>To do this, we'll start with a compile-time instrumentation of the program,
+allowing us to tag and identify any interesting behaviors</li>
+</ul>
+<ol start="2">
+<li>Collect sparse, fair subset of these behaviors</li>
+</ol>
+<ul>
+<li>Here, developers create a generic sampling framework</li>
+<li>This framework encompasses a feedback profile and outcome labels (success
+vs. failure) for each run</li>
+</ul>
+<ol start="3">
+<li>Finally, developers analyze behavioral changes in successful vs. failing runs
+to find bugs</li>
+</ol>
+<ul>
+<li>This step is what gives this process the name <strong>statistical debugging</strong></li>
+</ul>
+<h2 id="a-model-of-behavior"><a class="header" href="#a-model-of-behavior">A model of behavior</a></h2>
+<p>To begin a breakdown of &quot;potentially interesting&quot; behaviors, we can follow these
+steps:</p>
+<ul>
+<li>
+<p>Assume any interesting behavior is expressible as a predicate <strong>P</strong> on a
+program state at a particular program point:</p>
+<ul>
+<li><strong>Observation of behavior = observing P</strong></li>
+</ul>
+</li>
+<li>
+<p>Instrument the program to observe each predicate</p>
+</li>
+<li>
+<p>Which predicates should we observe?</p>
+</li>
+</ul>
+<h2 id="branches-are-interesting"><a class="header" href="#branches-are-interesting">Branches are interesting</a></h2>
+<p>In the lecture an example is given for a conditional branch where two predicates
+are identified:</p>
+<ul>
+<li><code>p == 0</code></li>
+<li><code>p != 0</code></li>
+</ul>
+<p>Through instrumentation of this particular branch, <strong>cells</strong> are maintained that
+increment each time a specific predicate is executed for this instrumented
+branch.</p>
+<h2 id="return-values-are-interesting"><a class="header" href="#return-values-are-interesting">Return values are interesting</a></h2>
+<p>Similar to the technique above for conditional branches, we instrument function
+calls and their return types, tracking different predicates for each possible
+return value - incrementing the cell count for each occurrence of a particular
+predicate. In our example for <code>fopen</code>, we track the following predicates:</p>
+<ul>
+<li><code>n &lt; 0</code></li>
+<li><code>n &gt; 0</code></li>
+<li><code>n == 0</code></li>
+</ul>
+<h2 id="what-other-behaviors-are-interesting"><a class="header" href="#what-other-behaviors-are-interesting">What other behaviors are interesting?</a></h2>
+<p>The entirely depends on the problems you need to solve, some examples are:</p>
+<ul>
+<li>Number of times each loop runs</li>
+<li>Scalar relationships between variables, e.g. <code>i &lt; j</code>, <code>i &gt; 42</code></li>
+<li>Pointer relationships, e.g. <code>p == q, p != nullptr</code></li>
+</ul>
+<h2 id="summarization-and-reporting"><a class="header" href="#summarization-and-reporting">Summarization and reporting</a></h2>
+<p>At the end of a particular analysis, we summarize the results for each predicate
+and report them. This involves conglomerating each array of counts for
+predicates per branch instruction, e.g.:</p>
+<ul>
+<li><code>branch_17</code>
+<ul>
+<li><code>p == 0</code></li>
+<li><code>p != 0</code></li>
+</ul>
+</li>
+<li><code>call_41</code>
+<ul>
+<li><code>n &lt; 0</code></li>
+<li><code>n &gt; 0</code></li>
+<li><code>n == 0</code></li>
+</ul>
+</li>
+</ul>
+<p>Becomes:</p>
+<ul>
+<li><code>p == 0</code></li>
+<li><code>p != 0</code></li>
+<li><code>n &lt; 0</code></li>
+<li><code>n &gt; 0</code></li>
+<li><code>n == 0</code></li>
+</ul>
+<p>After the summarization and reporting of our run, we utilize the provided
+feedback to determine the <strong>outcome</strong>: &quot;Did we <strong>succeed</strong> or <strong>fail</strong>? We also
+label each predicate with a series of states and in this example, we'll provide
+the following states:</p>
+<ul>
+<li><code>-</code> - This denotes that a particular predicate was not observed, neither true
+nor false</li>
+<li><code>0</code> - This denotes that a particular predicates was observed to be <code>false</code> at
+least once and <strong>never</strong> observed to be <code>true</code></li>
+<li><code>1</code> - This denotes that a particular predicate was observed to be <code>true</code> at
+least once and <strong>never</strong> observed to be <code>false</code></li>
+<li><code>*</code> - This denotes that a particular predicate was observed at least once to
+be <code>true</code> and at least once to be <code>false</code></li>
+</ul>
+<p>In the examples provided in the lectures videos, <strong>succeed</strong> or <strong>fail</strong> is
+determined by whether or not our <strong>assert</strong> call is <code>0</code> or <code>1</code>.</p>
+<h2 id="the-need-for-sampling"><a class="header" href="#the-need-for-sampling">The need for sampling</a></h2>
+<p>As is discussed, tracking all predicates within a program can be computationally
+expensive. From all of the interesting predicates within a program, we need to
+decide which predicates we'll examine and which we'll ignore. With this in mind,
+we use the following principles for sampling:</p>
+<ul>
+<li><strong>Randomly</strong> - sample random predicates</li>
+<li><strong>Independently</strong> - sample random predicates independent of the sampling of
+other predicates</li>
+<li><strong>Dynamically</strong> - sample random predicates, independently, determined at
+runtime</li>
+</ul>
+<p>Why do we do all of the above? To institute <strong>fairness</strong> and acquire an accurate
+picture of <strong>rare events</strong>.</p>
+<h2 id="feedback-reports-with-sampling"><a class="header" href="#feedback-reports-with-sampling">Feedback reports with sampling</a></h2>
+<p>Feedback reports per run is a vector of <strong>sampled</strong> predicate states:</p>
+<ul>
+<li>(<code>-</code>, <code>0</code>, <code>1</code>, <code>*</code>)</li>
+</ul>
+<p>And a <strong>success</strong> or <strong>failure</strong> outcome label. With sampling, we can be certain
+of what we did observe <em>but we may miss some events</em>. Given enough runs of the
+instrumented program, our <strong>samples</strong> begin to approach <strong>reality</strong>. Common
+events are seen most often in the feedback, and rare events are seen at a
+proportionate rate.</p>
+<h2 id="finding-causes-of-bugs"><a class="header" href="#finding-causes-of-bugs">Finding causes of bugs</a></h2>
+<p>How likely is failure when predicate <strong>P</strong> is observed to be true?</p>
+<ul>
+<li><code>F(P)</code> = number of failing runs where <strong>P</strong> is observed to be true</li>
+<li><code>S(P)</code> = number of successful runs where <strong>P</strong> is observed to be true</li>
+<li><code>Failure(P) = F(P) / (F(P) + S(P))</code></li>
+<li>Example:
+<ul>
+<li><code>F(P) = 20</code></li>
+<li><code>S(P) = 30</code></li>
+<li><code>Failure(P) = 20 / 50 = 0.4 probability of failing when P is true</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="tracking-context-and-increase"><a class="header" href="#tracking-context-and-increase">Tracking context and increase</a></h2>
+<p>In this slide we introduce <strong>context</strong>, determining the background chance of
+failure, regardless of <strong>P</strong>'s value. The following are definitions in the
+<strong>context</strong> equation:</p>
+<ul>
+<li><code>F(P observed)</code> = number of failing runs observing <strong>P</strong></li>
+<li><code>S(P observed)</code> = number of successful runs observing <strong>P</strong></li>
+<li><code>Context(P) = F(P observed) / (F(P observed) + S(P observed))</code></li>
+<li>Example: <code>F(P observed) = 40, S(P observed) = 80</code>
+<ul>
+<li><code>Context(P) = 40 / 120 = 0.333...</code></li>
+</ul>
+</li>
+</ul>
+<p>With a combination of <strong>failure</strong> and <strong>context</strong>, we can calculate the
+<strong>increase</strong> metric, a true measurement that can correlate a predicate to
+failing runs. The equation for <strong>increase</strong> is as follows:</p>
+<ul>
+<li><code>Increase(P) = Failure(P) - Context(P)</code></li>
+</ul>
+<p><strong>Increase</strong> is ratio that can determine the likelihood of failure with a
+predicate <strong>P</strong>, i.e.:</p>
+<ul>
+<li><code>Increase(P) approaches 1</code> - high correlation with failing runs</li>
+<li><code>Increase(P) approaches -1</code> - high correlation with successful runs</li>
+</ul>
+<h2 id="a-first-algorithm"><a class="header" href="#a-first-algorithm">A first algorithm</a></h2>
+<p>The following algorithm is used to filter and determine predicates that result
+in a crash. This algorithm is comprised of two steps:</p>
+<ol>
+<li>Discard predicates having <code>Increase(P) &lt;= 0</code></li>
+</ol>
+<ul>
+<li>e.g. bystander predicates, predicates correlated with success</li>
+<li>Exact value is sensitive to few observations</li>
+<li>Use lower bound of 95% confidence interval
+<ul>
+<li>Basically filtering out predicates that failed but did not appear often</li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li>Sort remaining predicates by <code>Increase(P)</code></li>
+</ol>
+<ul>
+<li>Again, use 95% lower bound</li>
+<li>Likely causes with determinacy metrics</li>
+</ul>
+<h2 id="revised-algorithm"><a class="header" href="#revised-algorithm">Revised algorithm</a></h2>
+<p>A revised algorithm used to determine predicates that result in a crash are as
+follows:</p>
+<ul>
+<li>Repeat the following steps until no runs are left:
+<ol>
+<li>Compute <strong>increase</strong>, <strong>F()</strong>, etc. for all predicates</li>
+<li>Rank the predicates</li>
+<li>Add the top-ranked predicate <strong>P</strong> to the result list</li>
+<li>Remove <strong>P</strong> and discard all runs where <strong>P</strong> is true</li>
+</ol>
+<ul>
+<li>This simulates fixing the bug corresponding to <strong>P</strong></li>
+<li>Discard reduces rank of correlated predicates</li>
+</ul>
+</li>
+</ul>
+<h2 id="ranking"><a class="header" href="#ranking">Ranking</a></h2>
+<p>A couple of strategies exist for ranking, we'll discuss some here:</p>
+<ul>
+<li>Ranking by <strong>increase</strong> - at first glance, useful, however, this often results
+in a high <strong>increase</strong> score but few failing runs. Not useful because of how
+rare it is in relation to the number of runs.
+<ul>
+<li>These are known as <strong>sub-bug predictors</strong>, covering special cases of more
+general bugs.</li>
+</ul>
+</li>
+<li>Ranking by <strong>failure</strong> - the problem here is that there could be many failing
+runs but low <strong>increase</strong> scores.
+<ul>
+<li>These are known as <strong>super-bug predictors</strong>, covering several different bugs
+together.</li>
+</ul>
+</li>
+</ul>
+<h2 id="a-helpful-analogy"><a class="header" href="#a-helpful-analogy">A helpful analogy</a></h2>
+<p>To better select bug predictors, we want to use the following concepts:</p>
+<ul>
+<li><strong>Precision</strong> - fraction of retrieved instances that are relevant</li>
+<li><strong>Recall</strong> - fraction of relevant instances that are retrieved</li>
+<li><strong>Retrieved instances</strong> - predicates reported as bug predictors</li>
+<li><strong>Relevant instances</strong> - predicates that are actual bug predictors</li>
+</ul>
+<p>With regard to the described concepts above, we need to achieve both
+<strong>high precision</strong> and <strong>high recall</strong>.</p>
+<h2 id="combining-precision-and-recall"><a class="header" href="#combining-precision-and-recall">Combining precision and recall</a></h2>
+<p>The <strong>increase</strong> metric has high precision and low recall, whereas <strong>F()</strong> has
+high recall and low precision. A standard solution to combine these is to take
+the <strong>harmonic mean</strong> of both metrics:</p>
+<ul>
+<li><code>2 / (1/increase(P) + 1/F(P))</code></li>
+</ul>
+<p>This <strong>harmonic mean</strong> rewards high scores in both dimensions.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="delta-debugging"><a class="header" href="#delta-debugging">Delta Debugging</a></h1>
+<p><strong>Delta debugging</strong> is a technique used to determine the source of a particular
+software bug. It follows the scientific method: hypothesize, experiment, and
+refine. With <strong>delta debugging</strong>, we continually reduce the input that produces
+a bug until we reach a minimum amount of input required to trigger the bug.</p>
+<h2 id="simplification"><a class="header" href="#simplification">Simplification</a></h2>
+<p>We simplify our testing input to generate bugs for the following reasons:</p>
+<ul>
+<li>Ease of communication</li>
+<li>Easier debugging</li>
+<li>Identification of duplicates</li>
+</ul>
+<h2 id="simplification-techniques"><a class="header" href="#simplification-techniques">Simplification techniques</a></h2>
+<p>The first technique discussed in this lecture is the use of a <strong>binary search</strong>
+to remove input until the crash-producing input is identified.</p>
+<h2 id="delta-debugging-algorithm"><a class="header" href="#delta-debugging-algorithm">Delta debugging algorithm</a></h2>
+<p>Delta debugging is similar to a binary search, however, when it fails to find a
+bug it increases the granularity of the <strong>changes</strong> or <strong>deltas</strong> that it tests.
+<strong>Deltas</strong> are blocks of input being used to test a target program. The delta
+debugging algorithm continues to try different subsets of deltas until it
+encounters a bug. The bug producing input is retained and the deltas increase
+in granularity until no bugs can be triggered.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="dynamic-symbolic-execution"><a class="header" href="#dynamic-symbolic-execution">Dynamic Symbolic Execution</a></h1>
+<p><strong>Dynamic symbolic execution</strong> is a hybrid approach to software analysis,
+combining dynamic and static analysis. While dynamic symbolic execution can
+produce false negatives, it does not produce false positives - all of its
+assertions are real. Dynamic symbolic execution provides guided inputs to a
+program in an attempt to uncover all inputs to traverse all paths of execution.</p>
+<h2 id="motivation-1"><a class="header" href="#motivation-1">Motivation</a></h2>
+<p>The motivation behind dynamic symbolic execution is as follows:</p>
+<ul>
+<li>Provide <strong>automated test generation</strong></li>
+<li>Generate a regression test suite</li>
+<li>Execute all reachable statements</li>
+<li>Catch any <strong>assertion violations</strong></li>
+</ul>
+<h2 id="approach"><a class="header" href="#approach">Approach</a></h2>
+<p>Dynamic symbolic execution's approach to software analysis is as follows:</p>
+<ul>
+<li>Stores program state <strong>concretely</strong> and <strong>symbolically</strong></li>
+<li>Solves <strong>constraints</strong> to guide execution at branch points</li>
+<li>Explores <strong>all execution paths</strong> of the unit tested</li>
+</ul>
+<h2 id="execution-paths-of-a-program"><a class="header" href="#execution-paths-of-a-program">Execution paths of a program</a></h2>
+<p>We can envision the execution paths of a program as a binary tree with possibly
+infinite depth - a <strong>computation tree</strong>. Each node of the computation tree
+represents the execution of a conditional statement, and each edge represents
+the execution of a sequence of non-conditional statements.</p>
+<p>Each path in the tree represents an equivalence class of inputs. The point of
+dynamic symbolic execution is to discover non-equivalent inputs to uncover
+new tree branches and paths.</p>
+<h2 id="symbolic-execution"><a class="header" href="#symbolic-execution">Symbolic execution</a></h2>
+<p>Given a series of branches and their condition statements, instead of
+brute-forcing the correct value to satisfy a condition statement to take a
+branch, <strong>symbolic execution</strong> leverages <strong>theorem provers</strong> to determine values
+that satisfy symbolic constraints.</p>
+<p>With this, we avoid using concrete values for inputs, opting for symbols, and
+we execute the program symbolically to resolve input values for program paths.
+One problem exists, however. Due to the number of possible branch conditions
+within a program, symbolic execution is susceptible to <strong>path explosion</strong>.</p>
+<h2 id="combined-approach"><a class="header" href="#combined-approach">Combined approach</a></h2>
+<p><strong>Dynamic symbolic execution</strong> or <strong>concolic execution</strong> is our hybrid approach
+because it leverages concrete values during its analysis, while also conducting
+symbolic analysis of a specific program under test. <strong>Concolic exeuction</strong>
+starts with random input values, keeping track of both concrete values and
+symbolic constraints. To assist in proving that a branch can be taken
+symbolically, a dynamic symbolic execution engine will proceed to simplify its
+symbolic constraints with concrete values. This helps to avoid issues like
+<strong>path explosion</strong>, however, this also requires the engine to use an
+<strong>incomplete</strong> theorem prover.</p>
+<h2 id="characteristics-of-dse"><a class="header" href="#characteristics-of-dse">Characteristics of DSE</a></h2>
+<p>The following are characteristics of dynamic symbolic execution:</p>
+<ul>
+<li>Automated, white-box</li>
+<li>Systematic input searching</li>
+<li>Path-sensitive</li>
+<li>Non-sampled instrumentation</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        <script type="text/javascript">
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+    </body>
+</html>

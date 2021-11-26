@@ -1,0 +1,11 @@
+[book]
+authors = ["one2blame"]
+language = "en"
+multilingual = false
+src = "src"
+title = "CS 6340: Software Analysis"
+
+[output.html]
+default-theme = "ayu"
+fold.enable = true
+

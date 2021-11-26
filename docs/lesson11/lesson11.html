@@ -1,0 +1,226 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js ayu">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Lesson 11 - CS 6340: Software Analysis</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "ayu";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('ayu')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item affix "><a href="../introduction.html">Introduction</a></li><li class="chapter-item "><a href="../lesson1/lesson1.html"><strong aria-hidden="true">1.</strong> Lesson 1</a></li><li class="chapter-item "><a href="../lesson2/lesson2.html"><strong aria-hidden="true">2.</strong> Lesson 2</a></li><li class="chapter-item "><a href="../lesson3/lesson3.html"><strong aria-hidden="true">3.</strong> Lesson 3</a></li><li class="chapter-item "><a href="../lesson4/lesson4.html"><strong aria-hidden="true">4.</strong> Lesson 4</a></li><li class="chapter-item "><a href="../lesson5/lesson5.html"><strong aria-hidden="true">5.</strong> Lesson 5</a></li><li class="chapter-item "><a href="../lesson6/lesson6.html"><strong aria-hidden="true">6.</strong> Lesson 6</a></li><li class="chapter-item "><a href="../lesson7/lesson7.html"><strong aria-hidden="true">7.</strong> Lesson 7</a></li><li class="chapter-item "><a href="../lesson8/lesson8.html"><strong aria-hidden="true">8.</strong> Lesson 8</a></li><li class="chapter-item "><a href="../lesson9/lesson9.html"><strong aria-hidden="true">9.</strong> Lesson 9</a></li><li class="chapter-item "><a href="../lesson10/lesson10.html"><strong aria-hidden="true">10.</strong> Lesson 10</a></li><li class="chapter-item expanded "><a href="../lesson11/lesson11.html" class="active"><strong aria-hidden="true">11.</strong> Lesson 11</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu (default)</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">CS 6340: Software Analysis</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="dynamic-symbolic-execution"><a class="header" href="#dynamic-symbolic-execution">Dynamic Symbolic Execution</a></h1>
+<p><strong>Dynamic symbolic execution</strong> is a hybrid approach to software analysis,
+combining dynamic and static analysis. While dynamic symbolic execution can
+produce false negatives, it does not produce false positives - all of its
+assertions are real. Dynamic symbolic execution provides guided inputs to a
+program in an attempt to uncover all inputs to traverse all paths of execution.</p>
+<h2 id="motivation"><a class="header" href="#motivation">Motivation</a></h2>
+<p>The motivation behind dynamic symbolic execution is as follows:</p>
+<ul>
+<li>Provide <strong>automated test generation</strong></li>
+<li>Generate a regression test suite</li>
+<li>Execute all reachable statements</li>
+<li>Catch any <strong>assertion violations</strong></li>
+</ul>
+<h2 id="approach"><a class="header" href="#approach">Approach</a></h2>
+<p>Dynamic symbolic execution's approach to software analysis is as follows:</p>
+<ul>
+<li>Stores program state <strong>concretely</strong> and <strong>symbolically</strong></li>
+<li>Solves <strong>constraints</strong> to guide execution at branch points</li>
+<li>Explores <strong>all execution paths</strong> of the unit tested</li>
+</ul>
+<h2 id="execution-paths-of-a-program"><a class="header" href="#execution-paths-of-a-program">Execution paths of a program</a></h2>
+<p>We can envision the execution paths of a program as a binary tree with possibly
+infinite depth - a <strong>computation tree</strong>. Each node of the computation tree
+represents the execution of a conditional statement, and each edge represents
+the execution of a sequence of non-conditional statements.</p>
+<p>Each path in the tree represents an equivalence class of inputs. The point of
+dynamic symbolic execution is to discover non-equivalent inputs to uncover
+new tree branches and paths.</p>
+<h2 id="symbolic-execution"><a class="header" href="#symbolic-execution">Symbolic execution</a></h2>
+<p>Given a series of branches and their condition statements, instead of
+brute-forcing the correct value to satisfy a condition statement to take a
+branch, <strong>symbolic execution</strong> leverages <strong>theorem provers</strong> to determine values
+that satisfy symbolic constraints.</p>
+<p>With this, we avoid using concrete values for inputs, opting for symbols, and
+we execute the program symbolically to resolve input values for program paths.
+One problem exists, however. Due to the number of possible branch conditions
+within a program, symbolic execution is susceptible to <strong>path explosion</strong>.</p>
+<h2 id="combined-approach"><a class="header" href="#combined-approach">Combined approach</a></h2>
+<p><strong>Dynamic symbolic execution</strong> or <strong>concolic execution</strong> is our hybrid approach
+because it leverages concrete values during its analysis, while also conducting
+symbolic analysis of a specific program under test. <strong>Concolic exeuction</strong>
+starts with random input values, keeping track of both concrete values and
+symbolic constraints. To assist in proving that a branch can be taken
+symbolically, a dynamic symbolic execution engine will proceed to simplify its
+symbolic constraints with concrete values. This helps to avoid issues like
+<strong>path explosion</strong>, however, this also requires the engine to use an
+<strong>incomplete</strong> theorem prover.</p>
+<h2 id="characteristics-of-dse"><a class="header" href="#characteristics-of-dse">Characteristics of DSE</a></h2>
+<p>The following are characteristics of dynamic symbolic execution:</p>
+<ul>
+<li>Automated, white-box</li>
+<li>Systematic input searching</li>
+<li>Path-sensitive</li>
+<li>Non-sampled instrumentation</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../lesson10/lesson10.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../lesson10/lesson10.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+    </body>
+</html>
